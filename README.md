@@ -1,15 +1,19 @@
+# Flask boilerplae simple form
+
 ## Requirements
 Flask
 
 ## Installation
-###1. Install virtual environment
-`sudo apt install python3-venv`
+### 1. Install virtual environment
 ```
+sudo apt install python3-venv
+
 python3 -m venv .venv
+
 source .venv/bin/activate
 ```
 
-###2. Install dependencies
+### 2. Install dependencies
 ```
 pip3 install -r requirements.txt
 ```
