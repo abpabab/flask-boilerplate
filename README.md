@@ -1,21 +1,20 @@
+# Flask boilerplae simple form
+
 ## Requirements
 Flask
 
-## Installation
-###1. Install virtual environment
-`sudo apt install python3-venv`
-```
-python3 -m venv .venv
-source .venv/bin/activate
-```
+## Terminal commands
+Make sure you have `pip` and `python3-venv` installed on your system.
 
-###2. Install dependencies
-```
-pip3 install -r requirements.txt
-```
-
-## Run program
 Edit python2.py, modify host, port as your need.
+```
+Install: make install
 
-Run `./run.sh` (default development mode)
+Run development mode: make dev
+
+Run production mode: make prod
+```
+
+## View your program
+Use the web browser to navigate to the address `http://localhost:5000/welcome` to test the application.
 
