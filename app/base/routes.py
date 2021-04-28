@@ -10,21 +10,21 @@ from flask import (
     redirect,
     url_for)
 
-from app import app
+from app import app, login_manager
 from app.base import blueprint
 
 
-@blueprint.route('/')
+@blueprint.route('/', methods=['GET'])
 def route_default():
     return redirect(url_for('user_blueprint.login'))
 
 
-@app.errorhandler(401)
+@app.login_manager.unauthorized_handler
 def unauthorized_handler():
     return jsonify({
                    "status": False,
                    "code": 401,
-                   "message": "Unauthorized access"
+                   "message": "Unauthorized request access"
                    }), 401
 
 

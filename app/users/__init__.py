@@ -9,7 +9,7 @@ from flask import Blueprint
 
 
 blueprint = Blueprint(
-    'user_blueprint',
+    'users_blueprint',
     __name__,
-    url_prefix='/user'
+    url_prefix='/users'
 )

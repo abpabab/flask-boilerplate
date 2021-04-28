@@ -7,11 +7,14 @@
 
 from app.home import blueprint
 from flask import jsonify
+from flask_login import login_required
 
 
 @blueprint.route('/', methods=['GET'], strict_slashes=False)
+@login_required
 def index():
     return jsonify({
                    'status': True,
+                   'code': 200,
                    'message': 'Home!'
-                   })
+                   }), 200

@@ -25,7 +25,7 @@ login_manager = LoginManager()
 app = Flask(__name__)
 
 
-modules_list = ('home', 'user', 'base')
+modules_list = ('home', 'users', 'base')
 
 
 def register_extensions(app):
