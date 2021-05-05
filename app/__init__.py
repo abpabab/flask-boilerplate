@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # @Author: ubuntu
 # @Date:   2021-04-23 05:50:17
-# @Last Modified by:   abpabab
-# @Last Modified time: 2021-04-26 06:46:52
+# @Last Modified by:   ubuntu
+# @Last Modified time: 2021-05-04 22:06:59
 
 
 import pymysql
@@ -25,7 +25,7 @@ login_manager = LoginManager()
 app = Flask(__name__)
 
 
-modules_list = ('home', 'users', 'base')
+modules_list = ('home', 'users', 'base', 'tasks', 'subtasks')
 
 
 def register_extensions(app):

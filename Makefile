@@ -26,10 +26,19 @@ prod:
 
 db_upgrade:
 	[ ! -d logs ] && mkdir logs; \
+	[ ! -d migrations/versions ] && mkdir migrations/versions; \
 	. .venv/bin/activate; \
 	export FLASK_ENV=development; \
 	export FLASK_APP=simple_app.py; \
 	flask db migrate; \
 	flask db upgrade
+
+db_downgrade:
+	[ ! -d logs ] && mkdir logs; \
+	[ ! -d migrations/versions ] && mkdir migrations/versions; \
+	. .venv/bin/activate; \
+	export FLASK_ENV=development; \
+	export FLASK_APP=simple_app.py; \
+	flask db downgrade
 
 all: clean install dev

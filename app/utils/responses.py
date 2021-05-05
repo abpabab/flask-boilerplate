@@ -2,7 +2,7 @@
 # @Author: ubuntu
 # @Date:   2021-04-23 05:50:17
 # @Last Modified by:   ubuntu
-# @Last Modified time: 2021-04-23 06:33:41
+# @Last Modified time: 2021-05-05 02:37:48
 
 
 BAD_REQUEST = {
@@ -29,7 +29,7 @@ VALID_USER = {
 	"message": "User login sucessfully"
 }
 
-def created(msg, data):
+def success(msg, data):
 	return {
 		"status": True,
 		"message": msg,

@@ -2,7 +2,7 @@
 # @Author: ubuntu
 # @Date:   2021-04-23 05:50:17
 # @Last Modified by:   ubuntu
-# @Last Modified time: 2021-04-23 06:59:00
+# @Last Modified time: 2021-05-05 02:36:30
 
 
 ### ---For more security, consider to use bcrypt---
@@ -49,7 +49,7 @@ def register():
         app.logger.error(str(e))
         return jsonify(responses.SERVER_ERR), 500
 
-    return jsonify(responses.created(
+    return jsonify(responses.success(
             "User created sucessfully",
             user_info
         ))
