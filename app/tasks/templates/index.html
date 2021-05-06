@@ -1,0 +1,36 @@
+<style>
+    table {
+        width: 100%;
+    }
+    
+    table, th, td {
+        border: 1px solid black;
+    }
+</style>
+
+
+<h3>Title: {{ title }}</h3>
+<table>
+    <thead>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Due date</th>
+        <th>Created at</th>
+        <th>Updated at</th>
+    </thead>
+    <tbody>
+        {% for task in tasks %}
+            <tr>
+                <td>{{ task.id }}</td>
+                <td>{{ task.name }}</td>
+                <td>{{ task.description }}</td>
+                <td>{{ task.status }}</td>
+                <td>{{ task.due_date }}</td>
+                <td>{{ task.created_time }}</td>
+                <td>{{ task.updated_time }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

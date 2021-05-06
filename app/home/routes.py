@@ -6,15 +6,15 @@
 
 
 from app.home import blueprint
-from flask import jsonify
+from flask import (
+    jsonify, 
+    render_template
+)
 from flask_login import login_required
 
 
-@blueprint.route('/', methods=['GET'], strict_slashes=False)
+@blueprint.route('/<user_id>', methods=['GET'], strict_slashes=False)
 @login_required
-def index():
-    return jsonify({
-                   'status': True,
-                   'code': 200,
-                   'message': 'Home!'
-                   }), 200
+def index(user_id):
+    
+    return render_template('home.html', user_id=user_id)

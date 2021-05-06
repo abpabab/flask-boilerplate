@@ -1,0 +1,16 @@
+[Unit]
+Description=Gunicorn instance to serve Todo app project
+After=network.target
+
+[Service]
+User=null
+Group=null
+WorkingDirectory=/path/to/flask-tasks-app
+Environment="PATH=/path/to/flask-tasks-app/.venv/bin"
+### TCP listen on localhost (127.0.0.1) port 5000
+ExecStart=/path/to/flask-tasks-app/.venv/bin/gunicorn --workers 3 --bind 127.0.0.1:5000 -m 007 wsgi:app
+### Socket listen
+#ExecStart=/media/null/Data/Projects/Python/Python\ 2/src/flask-tasks-app/.venv/bin/gunicorn --workers 3 --bind unix:todoapp.sock -m 007 wsgi:app
+
+[Install]
+WantedBy=multi-user.target

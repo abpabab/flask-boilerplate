@@ -9,13 +9,7 @@
 # from bcrypt import checkpw, hashpw, gensalt
 ### ---For demo or less security, use md5 from hashlib---
 import hashlib
-from flask import (
-    jsonify, 
-    redirect, 
-    request, 
-    url_for,
-    render_template
-)
+from flask import jsonify, redirect, request, url_for
 from flask_login import (
     current_user,
     login_required,
@@ -61,22 +55,27 @@ def register():
         ))
 
 
-@blueprint.route('/login', methods=['GET', 'POST'], strict_slashes=False)
+@blueprint.route('/login', methods=['POST'], strict_slashes=False)
 def login():
     """
     User login function
     """
 
-    if request.method == 'GET':
-        # Check if user already logged in?
-        if current_user.is_authenticated:
-            return redirect(url_for('home_blueprint.index', user_id=current_user.id))
-        else:
-            return render_template('login.html')
+    # Check if user already logged in?
+    if current_user.is_authenticated:
+        return jsonify({
+                "status": True,
+                "message": "You are alredy logged in the system",
+                "code": 200
+            })
+        # or return to the home page
+        # return redirect(url_for('home_blueprint.index'))
 
     try:
-        username = request.form['username']
-        password = hashlib.md5(request.form['password'].encode("utf-8")).hexdigest()
+        data = request.json
+
+        username = data['username']
+        password = hashlib.md5(data['password'].encode("utf-8")).hexdigest()
     except Exception as e:
         app.logger.error(str(e))
         return jsonify(responses.BAD_REQUEST), 400
@@ -86,10 +85,9 @@ def login():
     if user and password == user.password:                          # hashlib md5
         login_user(user)
     else:
-        invalid_login = "Invalid username or password xxx"
-        return render_template('login.html', message=invalid_login)
+        return jsonify(responses.INVALID_USER), 401
 
-    return redirect(url_for('home_blueprint.index', user_id=current_user.id))
+    return jsonify(responses.VALID_USER), 200
 
 
 @blueprint.route('/logout', methods=['GET'], strict_slashes=False)
@@ -109,7 +107,11 @@ def logout():
                 "message": "Bad request"
             })
 
-    return redirect(url_for('users_blueprint.login'))
+    return jsonify({
+        "status": True,
+        "code": 200,
+        "message": "You are logged out"
+    })
 
 
 @blueprint.route('/changepassword', methods=['GET', 'POST'])

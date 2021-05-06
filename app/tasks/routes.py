@@ -6,10 +6,14 @@
 
 
 from datetime import datetime
-from flask import jsonify, redirect, request, url_for
-from flask_login import (
-    login_required
+from flask import (
+    jsonify,
+    redirect,
+    request,
+    url_for,
+    render_template
 )
+from flask_login import login_required
 from app import app, db, login_manager
 from app.tasks import blueprint
 from app.tasks.models import Task
@@ -33,6 +37,7 @@ def get_all_tasks(_user_id):
     by <user_id>
     """
 
+    title = "User tasks"
     tasks = []
 
     try:
@@ -46,6 +51,10 @@ def get_all_tasks(_user_id):
         del q._sa_instance_state
         tasks.append(q.__dict__)
 
+    ### Template rendering
+    return render_template('index.html', title=title, tasks=tasks)
+
+    ### JSON return
     return jsonify(responses.success(
                 "Get all tasks of user_id: " + str(user_id),
                 tasks

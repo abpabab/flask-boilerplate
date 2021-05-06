@@ -30,7 +30,7 @@ class ConfigDevelopment(Config):
     --only for development and testing--
     """
 
-    SQLALCHEMY_DATABASE_URI = 'mysql://dev_user:dev_password@localhost/dev_db?use_unicode=1&charset=utf8'
+    SQLALCHEMY_DATABASE_URI = 'mysql://dev_user:dev_password@172.17.0.2/dev_db?use_unicode=1&charset=utf8'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
