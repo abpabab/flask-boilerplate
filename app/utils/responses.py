@@ -29,6 +29,12 @@ VALID_USER = {
 	"message": "User login sucessfully"
 }
 
+NOT_FOUND = {
+	"status": False,
+	"code": 404,
+	"message": "Requested resource could not be found"
+}
+
 def success(msg, data):
 	return {
 		"status": True,

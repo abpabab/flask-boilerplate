@@ -41,6 +41,9 @@ def get_all_tasks(_user_id):
         return jsonify(responses.BAD_REQUEST), 400
 
     query = Task.query.filter_by(user_id=user_id).all()
+        
+    if not query:
+        return jsonify(responses.NOT_FOUND), 404
 
     for q in query:
         del q._sa_instance_state
@@ -67,6 +70,9 @@ def get_one_task(_user_id, _task_id):
         return jsonify(responses.BAD_REQUEST), 400
 
     task = Task.query.filter_by(user_id=user_id, id=task_id).first()
+    
+    if not task:
+        return jsonify(responses.NOT_FOUND), 404
 
     del task._sa_instance_state
 
@@ -126,6 +132,9 @@ def get_task_status(_user_id, _task_id):
 
     task = Task.query.filter_by(user_id=user_id, id=task_id).first()
 
+    if not task:
+        return jsonify(responses.NOT_FOUND), 404
+
     status = task_status[task.status]
 
     return jsonify(responses.success(
@@ -159,6 +168,10 @@ def update_one_task(_user_id, _task_id):
         return jsonify(responses.BAD_REQUEST), 400
 
     task = Task.query.filter_by(user_id=user_id, id=task_id).first()
+    
+    if not task:
+        return jsonify(responses.NOT_FOUND), 404
+
     task.status = new_status          # change the status to <new_status>
     task_copy = task.__dict__.copy()  # to return to the user because task will be destroy after db.session.commit()
     db.session.commit()
